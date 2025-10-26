@@ -500,7 +500,7 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const ranks = [
+  const cards = [
     'A',
     '2',
     '3',
@@ -515,10 +515,13 @@ function getCardId(value) {
     'Q',
     'K',
   ];
-  const suits = ['♣', '♦', '♥', '♠'];
+  const symbols = ['♣', '♦', '♥', '♠'];
 
-  const deck = suits.flatMap((suit) => ranks.map((rank) => rank + suit));
-  return deck.indexOf(value);
+  const fullDeck = symbols.flatMap((symbol) =>
+    cards.map((card) => `${card}${symbol}`)
+  );
+
+  return fullDeck.indexOf(value);
 }
 
 module.exports = {
